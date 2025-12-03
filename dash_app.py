@@ -10,7 +10,8 @@ from src.clean import load_all_data
 from src.visualize import heatmap
 
 # Initialize app
-app = Dash()
+app = Dash(__name__)
+server = app.server
 
 ###############
 ### data
