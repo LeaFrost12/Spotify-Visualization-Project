@@ -16,7 +16,7 @@ server = app.server
 ###############
 ### data
 df = load_all_data()
-daily_df = load_agg_data()
+daily_df = load_agg_data(df)
 artist_options = sorted(df['artist_name'].dropna().unique().tolist())
 
 
@@ -27,7 +27,8 @@ app.layout = html.Div(children=[
     html.Div('The data for this project was downloaded from my Spotify account.'),
 
     html.Div(['The raw original data in json format is accessible by this link: ',
-    dcc.Link("Kaggle Link", href="https://www.kaggle.com/datasets/leafrost/my-spotify-extended-streaming-history")]),
+    html.A("Kaggle Link", href="https://www.kaggle.com/datasets/leafrost/my-spotify-extended-streaming-history",
+           target="_blank")]),
     
     html.Br(), html.Br(),
 
@@ -143,9 +144,18 @@ def update_figure1(year):
         title = f"Daily Listening ({year})"
 
     ### Create figures
-    fig = px.line(filtered, x='ts_local', y='min_played', title=title, template='plotly_white')
+    fig = px.line(filtered, x='ts_local', y='min_played', 
+                  title=title, template='plotly_white',
+                  )
+    
+
     fig.update_traces(opacity=0.2)
     fig.add_scatter(x=filtered['ts_local'], y=filtered['30d_avg'], mode='lines', name='30-day avg')
+    fig.update_traces(
+            hovertemplate=
+                "%{x}<br>" + 
+                "Minutes: %{y:.0f}"
+        )
     fig.update_traces(line_color='#1db954')
     fig.update_xaxes(title='Date')
     fig.update_yaxes(title='Minutes listened')
@@ -178,6 +188,12 @@ def update_figure2(year):
     top10_fig.update_xaxes(title='Minutes listened')
     top10_fig.update_layout(showlegend=False)
 
+    top10_fig.update_traces(
+            hovertemplate=
+                "%{y}<br>" + 
+                "Minutes: %{x:.0f}"
+        )
+
     return top10_fig
 
 # Callback 3: Track chart
@@ -202,6 +218,12 @@ def update_figure3(year):
     top10_fig.update_yaxes(title='')
     top10_fig.update_xaxes(title='Minutes listened')
     top10_fig.update_layout(showlegend=False)
+
+    top10_fig.update_traces(
+            hovertemplate=
+                "%{y}<br>" + 
+                "Minutes: %{x:.0f}"
+        )
 
     return top10_fig
 
@@ -232,6 +254,12 @@ def update_artist_plot(artist):
      fig.update_xaxes(title='Date')
      fig.update_yaxes(title='Minutes listened (30 day average)')
      fig.update_traces(line_color='#1db954')
+
+     fig.update_traces(
+            hovertemplate=
+                "%{x}<br>" + 
+                "Minutes: %{y:.0f}"
+        )
 
      return fig
 
