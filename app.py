@@ -21,25 +21,30 @@ artist_options = sorted(df['artist_name'].dropna().unique().tolist())
 
 
 # Create app layout
-app.layout = html.Div(children=[
-    html.H1(children='CSCE 567 Final Project - Lea Frost'),
+app.layout = html.Div([
+    html.H1('Spotify Visualization Project'),
 
-    html.Div('The data for this project was downloaded from my Spotify account.'),
+    html.Div('Lea Frost CSCE 567 Final Project'),
+    html.Br(), 
+
+    html.A("View this project on Github", href="https://www.kaggle.com/datasets/leafrost/my-spotify-extended-streaming-history",
+           target="_blank"),
+    html.Br(), html.Br(),
+
+    html.Div('The data for this project was downloaded from my personal Spotify account.'),
 
     html.Div(['The raw original data in json format is accessible by this link: ',
     html.A("Kaggle Link", href="https://www.kaggle.com/datasets/leafrost/my-spotify-extended-streaming-history",
            target="_blank")]),
-    
     html.Br(), html.Br(),
 
     ### listening graph
-    html.B(children=
+    html.B(
         "Listening time",
         style={
         'fontSize': '24px'}),
     html.Br(),html.Br(),
-    html.Div(children=
-        "Filter by year"),
+    html.Div("Filter by year"),
 
     dcc.Dropdown(
         id='year-dropdown1',
@@ -55,13 +60,13 @@ app.layout = html.Div(children=[
     ),
 
     ### artist bar chart
-    html.B(children=
+    html.B(
         "Top artists",
         style={
         'fontSize': '24px'}),
     html.Br(),html.Br(),
-    html.Div(children=
-        "Filter by year"),
+    html.Div("Filter by year"),
+
     dcc.Dropdown(
         id='year-dropdown2',
         #year options
@@ -76,13 +81,12 @@ app.layout = html.Div(children=[
     ),
 
     ### track bar chart
-    html.B(children=
+    html.B(
         "Top tracks",
         style={
         'fontSize': '24px'}),
     html.Br(),html.Br(),
-    html.Div(children=
-        "Filter by year"),
+    html.Div("Filter by year"),
     dcc.Dropdown(
         id='year-dropdown3',
         #year options
@@ -98,13 +102,13 @@ app.layout = html.Div(children=[
 
     #############
     ### artist over time
-    html.B(children=
+    html.B(
         "Artists over time",
         style={
         'fontSize': '24px'}),
     html.Br(),html.Br(),
-    html.Div(children=
-        "Choose an artist"),
+    html.Div(
+        "Type and choose an artist"),
     dcc.Dropdown(
         id='artist-dropdown',
         #year options
@@ -120,7 +124,7 @@ app.layout = html.Div(children=[
 
     ##########
     # time heat map
-    html.B(children=
+    html.B(
         "Listening over the week",
         style={
         'fontSize': '24px'}),
