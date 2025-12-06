@@ -27,7 +27,7 @@ app.layout = html.Div([
     html.Div('Lea Frost CSCE 567 Final Project'),
     html.Br(), 
 
-    html.A("View this project on Github", href="https://www.kaggle.com/datasets/leafrost/my-spotify-extended-streaming-history",
+    html.A("View this project on Github", href="https://github.com/LeaFrost12/Spotify-Visualization-Project",
            target="_blank"),
     html.Br(), html.Br(),
 
@@ -125,7 +125,7 @@ app.layout = html.Div([
     ##########
     # time heat map
     html.B(
-        "Listening over the week",
+        "Listening throughout the week",
         style={
         'fontSize': '24px'}),
     dcc.Graph(id="heatmap",
