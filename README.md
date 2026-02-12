@@ -1,6 +1,6 @@
 ### Spotify Visualization Project
 
-Lea Frost for CSCE 567
+Lea Frost
 
 [Link to the project](https://spotify-visualization-project.onrender.com/)
 
